@@ -1,0 +1,54 @@
+<odoo>
+
+    <!-- ================= GROUPS ================= -->
+
+    <!-- Student -->
+    <record id="academy_group_student" model="res.groups">
+        <field name="name">Academy Student</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <!-- Instructor -->
+    <record id="academy_group_instructor" model="res.groups">
+        <field name="name">Academy Instructor</field>
+        <field name="implied_ids" eval="[(4, ref('academy_lab.academy_group_student'))]"/>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <!-- Manager -->
+    <record id="academy_group_manager" model="res.groups">
+        <field name="name">Academy Manager</field>
+        <field name="implied_ids" eval="[(4, ref('academy_lab.academy_group_instructor'))]"/>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <!-- ================= RECORD RULES ================= -->
+
+    <!-- Student: Published Courses only -->
+    <record id="academy_course_student_rule" model="ir.rule">
+        <field name="name">Student - Published Courses</field>
+        <field name="model_id" ref="model_academy_course"/>
+        <field name="domain_force">[('state','=','published')]</field>
+        <field name="groups" eval="[(4, ref('academy_lab.academy_group_student'))]"/>
+    </record>
+
+    <!-- Student: Own Enrollments only -->
+    <record id="academy_enrollment_student_rule" model="ir.rule">
+        <field name="name">Student - Own Enrollments</field>
+        <field name="model_id" ref="model_academy_enrollment"/>
+        <field name="domain_force">[('student_id','=',user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('academy_lab.academy_group_student'))]"/>
+    </record>
+
+    <!-- Instructor: Read All Enrollments -->
+    <record id="academy_enrollment_instructor_rule" model="ir.rule">
+        <field name="name">Instructor - Read Enrollments</field>
+        <field name="model_id" ref="model_academy_enrollment"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="groups" eval="[(4, ref('academy_lab.academy_group_instructor'))]"/>
+    </record>
+
+</odoo>

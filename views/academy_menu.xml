@@ -1,0 +1,49 @@
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="academy_menu_root" name="Academy" sequence="10"/>
+
+    <!-- Courses -->
+    <menuitem id="academy_menu_courses"
+              name="Courses"
+              parent="academy_menu_root"
+              sequence="10"/>
+
+    <menuitem id="academy_menu_courses_list"
+              name="Courses"
+              parent="academy_menu_courses"
+              action="academy_course_action"
+              sequence="10"/>
+
+    <menuitem id="academy_menu_categories"
+              name="Categories"
+              parent="academy_menu_courses"
+              action="academy_course_category_action"
+              sequence="20"/>
+
+    <!-- Enrollments -->
+    <menuitem id="academy_menu_enrollments"
+              name="Enrollments"
+              parent="academy_menu_root"
+              sequence="20"/>
+
+    <menuitem id="academy_menu_all_enrollments"
+              name="All Enrollments"
+              parent="academy_menu_enrollments"
+              action="academy_enrollment_action"
+              sequence="10"/>
+
+    <menuitem id="academy_menu_my_enrollments"
+              name="My Enrollments"
+              parent="academy_menu_enrollments"
+              action="academy_my_enrollment_action"
+              sequence="20"/>
+
+    <!-- Configuration (Managers only) -->
+    <menuitem id="academy_menu_configuration"
+              name="Configuration"
+              parent="academy_menu_root"
+              groups="academy_lab.academy_group_manager"
+              sequence="30"/>
+
+</odoo>
