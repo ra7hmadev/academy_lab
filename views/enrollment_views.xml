@@ -15,6 +15,7 @@
         <field name="view_mode">list,form</field>
     </record>
 
+    <!-- List View -->
     <record id="academy_enrollment_list_view" model="ir.ui.view">
         <field name="name">academy.enrollment.list</field>
         <field name="model">academy.enrollment</field>
@@ -28,47 +29,61 @@
         </field>
     </record>
 
+    <!-- Form View -->
     <record id="academy_enrollment_form_view" model="ir.ui.view">
-    <field name="name">academy.enrollment.form</field>
-    <field name="model">academy.enrollment</field>
-    <field name="arch" type="xml">
-        <form>
-            <header>
+        <field name="name">academy.enrollment.form</field>
+        <field name="model">academy.enrollment</field>
+        <field name="arch" type="xml">
+            <form>
 
-                <button name="action_confirm"
-                        type="object"
-                        string="Confirm"
-                        visibility="state == 'draft'"/>
+                <header>
+                    <button name="action_confirm"
+                            type="object"
+                            string="Confirm"
+                            visibility="state == 'draft'"/>
 
-                <button name="action_complete"
-                        type="object"
-                        string="Complete"
-                        visibility="state == 'confirmed'"/>
+                    <button name="action_complete"
+                            type="object"
+                            string="Complete"
+                            visibility="state == 'confirmed'"/>
 
-                <button name="action_cancel"
-                        type="object"
-                        string="Cancel"
-                        visibility="state in ('draft','confirmed')"/>
+                    <button name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            visibility="state in ('draft','confirmed')"/>
 
-                <field name="state"
-                       widget="statusbar"
-                       statusbar_visible="draft,confirmed,completed,cancelled"/>
-            </header>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,confirmed,completed,cancelled"/>
+                </header>
 
-            <sheet>
-                <group>
-                    <field name="student_id"/>
-                    <field name="course_id"/>
-                    <field name="grade"/>
-                    <field name="attendance_percentage"/>
-                    <field name="notes"/>
-                </group>
-            </sheet>
+                <sheet>
 
-            <chatter/>
-        </form>
-    </field>
-</record>
+                    <!-- ✅ المكان الصح للـ oe_button_box -->
+                    <div class="oe_button_box" name="button_box">
+                        <button type="action"
+                                name="%(account.action_move_out_invoice_type)d"
+                                class="oe_stat_button"
+                                icon="fa-file-text"
+                                invisible="not invoice_id"
+                                domain="[('id', '=', invoice_id)]">
+                            <field name="invoice_id" widget="statinfo"/>
+                        </button>
+                    </div>
 
+                    <group>
+                        <field name="student_id"/>
+                        <field name="course_id"/>
+                        <field name="grade"/>
+                        <field name="attendance_percentage"/>
+                        <field name="notes"/>
+                    </group>
+
+                </sheet>
+
+                <chatter/>
+            </form>
+        </field>
+    </record>
 
 </odoo>

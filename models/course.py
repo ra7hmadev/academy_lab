@@ -11,6 +11,12 @@ class AcademyCourse(models.Model):
     code = fields.Char(required=True, index=True)
     description = fields.Text()
 
+    product_id = fields.Many2one(
+    'product.product',
+    readonly=True
+)
+
+
     instructor_id = fields.Many2one(
         'res.partner',
         domain=[('is_instructor', '=', True)]
@@ -102,3 +108,16 @@ class AcademyCourse(models.Model):
 
     def action_cancel(self):
         self.write({'state': 'cancelled'})
+    def action_open_product_wizard(self):
+       return {
+        'type': 'ir.actions.act_window',
+        'name': 'Generate Product',
+        'res_model': 'academy.product.wizard',
+        'view_mode': 'form',
+        'target': 'new',
+        'context': {
+            'default_name': self.name,
+            'active_id': self.id,
+        }
+    }
+

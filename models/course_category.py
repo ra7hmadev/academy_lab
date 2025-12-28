@@ -15,7 +15,6 @@ class AcademyCourseCategory(models.Model):
         compute='_compute_course_count',
         store=True
     )
-
     @api.depends('course_ids')
     def _compute_course_count(self):
         for rec in self:

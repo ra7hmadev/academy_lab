@@ -16,6 +16,16 @@ class AcademyEnrollment(models.Model):
         'academy.course',
         required=True
     )
+    invoice_id = fields.Many2one(
+    'account.move',
+    readonly=True
+    )
+    state_enrol = fields.Selection([
+    ('draft', 'Draft'),
+    ('confirmed', 'Confirmed'),
+    ])
+
+
 
     enrollment_date = fields.Date(
         default=fields.Date.today
