@@ -58,10 +58,24 @@ class AcademyCourse(models.Model):
         related='instructor_id.name',
         store=True
     )
+    sale_order_count = fields.Integer(
+    compute='_compute_sale_order_count',
+    string='Sales Orders')
 
     _sql_constraints = [
         ('code_unique', 'unique(code)', 'Course code must be unique.')
     ]
+    @api.depends('sale_order_ids')
+    def _compute_sale_order_count(self):
+     for course in self:
+        if course.product_id:
+            order_lines = self.env['sale.order.line'].search([
+                ('product_id', '=', course.product_id.id)
+            ])
+            sale_orders = order_lines.mapped('order_id')
+            course.sale_order_count = len(sale_orders)
+        else:
+            course.sale_order_count = 0
 
     @api.depends('enrollment_ids.state')
     def _compute_enrolled_count(self):
@@ -120,4 +134,29 @@ class AcademyCourse(models.Model):
             'active_id': self.id,
         }
     }
+    
+    def action_view_sales(self):
+      self.ensure_one()
+    
+      if not self.product_id:
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Sales Orders',
+            'res_model': 'sale.order',
+            'view_mode': 'tree,form',
+            'domain': [('id', '=', False)],
+        }
+    
+      order_lines = self.env['sale.order.line'].search([
+        ('product_id', '=', self.product_id.id)
+    ])
+      sale_orders = order_lines.mapped('order_id')
+    
+      return {
+        'type': 'ir.actions.act_window',
+        'name': f'Sales Orders - {self.name}',
+        'res_model': 'sale.order',
+        'view_mode': 'tree,form',
+        'domain': [('id', 'in', sale_orders.ids)],
+      }
 

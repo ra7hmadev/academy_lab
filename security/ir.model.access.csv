@@ -8,6 +8,4 @@ access_academy_enrollment_student,academy.enrollment.student,model_academy_enrol
 access_academy_enrollment_instructor,academy.enrollment.instructor,model_academy_enrollment,academy_lab.academy_group_instructor,1,0,0,0
 access_academy_enrollment_manager,academy.enrollment.manager,model_academy_enrollment,academy_lab.academy_group_manager,1,1,1,1
 
-access_academy_category_student,academy.category.student,model_academy_course_category,academy_lab.academy_group_student,1,0,0,0
-access_academy_category_instructor,academy.category.instructor,model_academy_course_category,academy_lab.academy_group_instructor,1,0,0,0
-access_academy_category_manager,academy.category.manager,model_academy_course_category,academy_lab.academy_group_manager,1,1,1,1
+access_academy_product_wizard_manager,academy.product.wizard.manager,model_academy_product_wizard,academy_lab.academy_group_manager,1,1,1,1

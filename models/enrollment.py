@@ -82,3 +82,16 @@ class AcademyEnrollment(models.Model):
 
     def action_complete(self):
         self.write({'state': 'completed'})
+
+    def action_view_invoice(self):
+        self.ensure_one()
+        return {
+             'type': 'ir.actions.act_window',
+             'name': 'Invoice',
+             'res_model': 'account.move',
+             'res_id': self.invoice_id.id,
+             'view_mode': 'form',
+             'views': [(False, 'form')],
+
+        }
+      

@@ -1,0 +1,10 @@
+[33mc5f52db[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mexperiment[m[33m)[m HEAD@{0}: checkout: moving from feature/project to main
+[33m0b6add8[m[33m ([m[1;31morigin/feature/project[m[33m, [m[1;32mfeature/project[m[33m)[m HEAD@{1}: Branch: renamed refs/heads/feature/sale-order to refs/heads/feature/project
+[33m0b6add8[m[33m ([m[1;31morigin/feature/project[m[33m, [m[1;32mfeature/project[m[33m)[m HEAD@{3}: commit: Feature: extend sale order
+[33mc5f52db[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mexperiment[m[33m)[m HEAD@{4}: checkout: moving from main to feature/sale-order
+[33mc5f52db[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mexperiment[m[33m)[m HEAD@{5}: reset: moving to HEAD~1
+[33m9831828[m HEAD@{6}: commit: Initial commit
+[33mc5f52db[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mexperiment[m[33m)[m HEAD@{7}: checkout: moving from experiment to main
+[33mc5f52db[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mexperiment[m[33m)[m HEAD@{8}: checkout: moving from main to experiment
+[33mc5f52db[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mexperiment[m[33m)[m HEAD@{9}: Branch: renamed refs/heads/master to refs/heads/main
+[33mc5f52db[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mexperiment[m[33m)[m HEAD@{11}: commit (initial): Initial commit - Academy Lab Odoo 18 module

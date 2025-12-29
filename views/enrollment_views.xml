@@ -40,18 +40,20 @@
                     <button name="action_confirm"
                             type="object"
                             string="Confirm"
-                            visibility="state == 'draft'"/>
+                            invisible="state != 'draft'"
+                            class="btn-primary"/>
 
                     <button name="action_complete"
                             type="object"
                             string="Complete"
-                            visibility="state == 'confirmed'"/>
+                            invisible="state != 'confirmed'"
+                            class="btn-success"/>
 
                     <button name="action_cancel"
                             type="object"
                             string="Cancel"
-                            visibility="state in ('draft','confirmed')"/>
-
+                           invisible="state not in ('draft', 'confirmed')"
+                            class="btn-danger"/>
                     <field name="state"
                            widget="statusbar"
                            statusbar_visible="draft,confirmed,completed,cancelled"/>
@@ -61,14 +63,13 @@
 
                     <!-- ✅ المكان الصح للـ oe_button_box -->
                     <div class="oe_button_box" name="button_box">
-                        <button type="action"
-                                name="%(account.action_move_out_invoice_type)d"
+                        <button type="object"
+                                name="action_view_invoice"
                                 class="oe_stat_button"
-                                icon="fa-file-text"
-                                invisible="not invoice_id"
-                                domain="[('id', '=', invoice_id)]">
-                            <field name="invoice_id" widget="statinfo"/>
-                        </button>
+                                icon="fa-file-text-o"
+                               invisible="not invoice_id">
+                         <field string="Invoice" name="invoice_id" widget="statinfo" />
+                       </button>
                     </div>
 
                     <group>

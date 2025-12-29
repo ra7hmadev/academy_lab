@@ -1,27 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- Wizard Form View -->
     <record id="academy_product_wizard_form" model="ir.ui.view">
         <field name="name">academy.product.wizard.form</field>
         <field name="model">academy.product.wizard</field>
         <field name="arch" type="xml">
-            <form string="Create Product">
-                <group>
-                    <field name="name"/>
-                    <field name="price"/>
-                </group>
-                <header>
-                    <button string="Create" type="object" name="action_create_product" class="btn-primary"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
-                </header>
+            <form>
+                <sheet>
+                    <group>
+                        <field name="course_id" invisible="1"/>
+                        <field name="name" />
+                        <field name="price"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_create_product" 
+                            string="Create Product" 
+                            type="object" 
+                            class="btn-primary"/>
+                    <button string="Cancel" 
+                            class="btn-secondary" 
+                            special="cancel"/>
+                </footer>
             </form>
         </field>
     </record>
+    
+    <!-- Wizard Action -->
     <record id="action_academy_product_wizard" model="ir.actions.act_window">
-    <field name="name">Generate Product</field>
-    <field name="res_model">academy.product.wizard</field>
-    <field name="view_mode">form</field>
-    <field name="target">new</field>
-    <field name="context">{'default_name': active_id and active_name}</field>
-</record>
-
+        <field name="name">Generate Product</field>
+        <field name="res_model">academy.product.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_academy_course"/>
+        <field name="context">{'default_course_id': active_id, 'default_name': active_name}</field>
+    </record>
 </odoo>

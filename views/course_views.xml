@@ -32,26 +32,49 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_publish"
-                         type="object" string="Publish" 
-                         visibility="state == 'draft'"/>
-                        <button name="action_start"
-                        type="object" string="Start" 
-                        visibility="state != 'draft'"/>
-                        <button name="action_complete"
-                         type="object" string="Complete"
-                          visibility="state == 'published'"/>
-                        <button name="action_cancel"
-                         type="object" string="Cancel" 
-                         visibility="state == 'draft'"/>
-                        <field name="state" 
-                        widget="statusbar" 
-                        visibility="draft,published,in_progress,done,cancelled"/>
-                        <button name="action_open_product_wizard" 
-                        type="object" 
-                        string="Generate Product" 
-                        visibility="state == 'draft'"/>
-                    </header>
+
+    <!-- Publish -->
+    <button name="action_publish"
+            type="object"
+            string="Publish"
+            class="btn-primary"
+            invisible="state != 'draft'"/>
+
+    <!-- Start -->
+     <button name="action_start"
+            type="object"
+            string="Start"
+            class="btn-secondary"
+            invisible="state != 'published'"/>
+
+    <!-- Complete -->
+    <button name="action_complete"
+            type="object"
+            string="Complete"
+            class="btn-success"
+            invisible="state != 'in_progress'"/>
+
+    <!-- Cancel (only in draft) -->
+    <button name="action_cancel"
+            type="object"
+            string="Cancel"
+            class="btn-danger"
+            invisible="state != 'draft'"/>
+
+    <!-- Generate Product -->
+    <button name="action_open_product_wizard"
+            type="object"
+            string="Generate Product"
+            class="btn-info"
+            invisible="state not in ('published','in_progress')"/>
+    
+    <!-- Statusbar -->
+    <field name="state"
+           widget="statusbar"
+           statusbar_visible="draft,published,in_progress,done,cancelled"/>
+
+        </header>
+
 
                     <sheet>
                         <div class="oe_button_box" name="button_box">
@@ -63,12 +86,14 @@
                         </div>
 
                         <div class="oe_button_box" name="button_box">
-                            <button type="action" name="%(sale.action_orders)d"
-                                    class="oe_stat_button"
-                                     icon="fa-shopping-cart"
-                                    invisible="not product_id"
-                                    context="{'search_default_product_id': product_id}">
-                                <span class="o_stat_text">Sales</span>
+                          <button type="object"
+                                name="action_view_sales"
+                                class="oe_stat_button"
+                                icon="fa-shopping-cart"
+                                invisible="not product_id">
+                                 <field name="sale_order_count"  
+                                      widget="statinfo" 
+                                     string="Sales"/>
                             </button>
                         </div>
 
